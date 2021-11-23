@@ -1,0 +1,93 @@
+# Versões utilizadas
+- Composer Version 2.1.12
+- PHP Version 8.0.0
+- Laravel Installer - ( Version 4.2.9 )
+- php artisan --version ( Laravel Framework 8.73.2 )
+- composer show laravel/framework ( Mais informaçoes)
+
+# Criando um projeto
+- laravel new api
+
+# Biblioteca de autenticação (tymon/jwt-auth)
+# Link da Documentação (https://jwt-auth.readthedocs.io/en/develop/laravel-installation/)
+- composer require tymon/jwt-auth  "^1.0"
+- php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+- php artisan jwt:secret
+
+# Criar um banco de dados e configurar o arquivo .env
+
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=linsminishop
+  DB_USERNAME=root
+  DB_PASSWORD=
+
+# Setar null para a variavel abaixo nunk expirar o token
+  JWT_TTL=null
+
+# Criando Rotas
+- api/ping
+
+# Iniciando o projeto
+- php artisan serve
+
+
+# Configurar o arquivo 
+- pasta config/auth.php 
+
+'defaults' => [
+    'guard' => 'api',
+    'passwords' => 'users',
+],
+
+'guards' => [
+    'api' => [
+        'driver' => 'jwt',
+        'provider' => 'users',
+    ],
+],
+
+# Planejando o banco de dados
+
+- USUARIOS
+-- BARBEIROS FAVORITOS
+-- AGENDAMENTOS
+
+- BARBEIROS
+-- FOTOS
+-- NOTAS
+-- SERVIÇOS
+-- DEPOIMENTOS
+-- DISPONIBILIDADE
+
+# Tabelas no banco de dados
+- users
+- userfavorites
+- userappointments
+
+- barbers
+- barberphotos
+- barberservices
+- barbertestimonials
+- baberavailability
+
+# Criar Migrations
+- php artisan make:migration create_all_tables
+
+# Roda a Migration
+- php artisan migrate:fresh
+
+# Criar controllers 
+- php artisan make:controller AuthController
+- php artisan make:controller UserController
+- php artisan make:controller BarberController
+
+# Criar Models
+- php artisan make:model UserFavorite
+- php artisan make:model UserAppointment
+- php artisan make:model Barber
+- php artisan make:model BarberPhotos
+- php artisan make:model BarberServices
+- php artisan make:model BarberTestimonial
+- php artisan make:model BarberAvailability
