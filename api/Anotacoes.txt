@@ -23,8 +23,17 @@
   DB_USERNAME=root
   DB_PASSWORD=
 
-# Setar null para a variavel abaixo nunk expirar o token
-  JWT_TTL=null
+# Setar NULL para a variavel abaixo nunk expirar o token dentro do arquivo .env
+  JWT_TTL=NULL
+
+# Remover o 'exp', do arquivo config/jwt.php 
+ 'required_claims' => [
+        'iss',
+        'iat',
+        'nbf',
+        'sub',
+        'jti',
+    ],
 
 # Criando Rotas
 - api/ping
@@ -91,3 +100,28 @@
 - php artisan make:model BarberServices
 - php artisan make:model BarberTestimonial
 - php artisan make:model BarberAvailability
+
+# Biblioteca para converter imagens 
+- composer require intervention/image
+
+# Configurar o arquivo 
+- pasta config/app 
+
+/* Package Service Providers */
+- Intervention\Image\ImageServiceProvider::class
+
+/* aliases - add no array */
+- 'Image' => Intervention\Image\Facades\Image::class
+
+/* Descomente o arquvo php.ini da pasta xamp,  para ativar o GD, no PHP ^8 */
+- retire o " ; " do "extension=gd" no arquivo "php.ini"  na pasta do XAMPP
+
+
+/* Traduzindo as mensagens de erros do ingles pra o portugues  */
+- Entrar na pasta sources/lang
+- Clone a pasta en
+- Renomear a pasta para pt-BR 
+- Faça a tradução no arquivo validation.php
+- Depois configure o arquivo na pasta config
+- config/app.php
+- 'locale' => 'pt-BR'

@@ -9,6 +9,6 @@ class BarberPhotos extends Model
 {
     use HasFactory;
 
-    protected $table = 'barberphotos';
+    protected $table = 'barbersphotos';
     public $timestamps = false;
 }
